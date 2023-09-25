@@ -99,9 +99,9 @@ sys_uptime(void)
 uint64
 sys_trace() {
   int trace_id;
-  argint(0, &trace_id);
-  if (trace_id< 0)
+  if (argint(0, &trace_id)< 0)
     return -1;
   myproc()->trace_id = trace_id;
-  return myproc()->trace_id;
+  //why return 0? wq
+  return 0;
 }
