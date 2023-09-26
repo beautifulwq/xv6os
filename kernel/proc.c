@@ -655,3 +655,18 @@ procdump(void)
     printf("\n");
   }
 }
+
+
+int
+get_total_UNUSED_pid() {
+  int cnt_UNUSED = 0;
+  struct proc* p;
+  for (p = proc; p < &proc[NPROC]; p++) {
+    acquire(&p->lock);
+    if (p->state != UNUSED) {
+      cnt_UNUSED++;
+    }
+    release(&p->lock);
+  }
+  return cnt_UNUSED;
+}
